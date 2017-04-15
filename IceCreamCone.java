@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
-
+import objectdraw.ActiveObject;
 import javax.swing.JComponent;
 
 /**
@@ -11,7 +11,7 @@ import javax.swing.JComponent;
  * @author Ching2 Huang
  *
  */
-public class IceCreamCone extends JComponent {
+public class IceCreamCone extends JComponent, ActiveObject {
 
 	// the list to store the value of ice creams
 	private StackLL<String> flavorList;
@@ -132,15 +132,34 @@ public class IceCreamCone extends JComponent {
 	 */
 	private void addScoop(Graphics g, Color color, int n) {
 		// xLoc is the x location of the scoop
-		// yLoc is the y location of the scoop. Increase by multiplying the
 		// number of scoops
 		int xLoc = this.getWidth() / 2 - SCOOP_SIZE / 2;
-		int yLoc = this.getHeight() - CONE_HEIGHT - (SCOOP_SIZE - OVERLAP) * n;
+		int yLoc = SCOOP_SIZE;
 		// be able to change color for each flavor
 		g.setColor(color);
 		// paint the scoop
 		g.fillOval(xLoc, yLoc, SCOOP_SIZE, SCOOP_SIZE);
+		
+		//To start the animation
+		start();
 	}
+	
+	/**
+	* Cause the ball to move in a straight line and stop when it reaches the top of the ice-cream.
+	*/
+	public void run(){
+        	//make the scoope animated
+		// yLoc is the y location of the scoop. Increase by multiplying the
+		// number of scoops
+		int yLoc = this.getHeight() - CONE_HEIGHT - (SCOOP_SIZE - OVERLAP) * n;
+        	while (g.getY() < yLoc) {
+			// Move the ball a small amount
+			g.move(0, 5);
+			// Pause to allow the display to update and give the feeling of animation
+			pause(DELAY_TIME);
+		}
+	}
+	
 
 	/**
 	 * add a random flavor scoop
