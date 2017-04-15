@@ -156,7 +156,7 @@ public class IceCreamCone extends JComponent, ActiveObject {
 			// Move the ball a small amount
 			g.move(0, 5);
 			// Pause to allow the display to update and give the feeling of animation
-			pause(DELAY_TIME);
+			pause(30);
 		}
 	}
 	
