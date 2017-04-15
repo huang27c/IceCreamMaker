@@ -112,4 +112,4 @@ public class IceCreamMaker extends JPanel implements ActionListener {
 		cone.repaint();
 		cone.revalidate();
 	}
-}
+} 
